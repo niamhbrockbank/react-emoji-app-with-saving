@@ -2,20 +2,20 @@ import {useState} from "react"
 
 function EmojiPicker(): JSX.Element {
     const [state, setState] = useState('?')
-    const [prevEmoji, setPrevEmoji] = useState('n/a')
+    const [prevEmoji, addToEmojiHistory] = useState<string[]>([])
 
     const makeEmojiHappy = () => {
-        setPrevEmoji(state)
+        addToEmojiHistory(prevEmoji => [...prevEmoji, state])
         setState('😀')
     }
 
     const makeEmojiSad = () => {
-        setPrevEmoji(state)
+        addToEmojiHistory(prevEmoji => [...prevEmoji, state])
         setState('😥')
     }
 
     const makeEmojiContrarian = () => {
-        setPrevEmoji(state)
+        addToEmojiHistory(prevEmoji => [...prevEmoji, state])
         setState('🙋')
     }
 
